@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cats</title>
+    <link rel="shortcut icon" href="./assets/cat.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Nunito+Sans&display=swap');
+        /*
+            font-family: 'Kdam Thmor Pro', sans-serif;
+            font-family: 'Nunito Sans', sans-serif; 
+         */
+        html {
+            overflow-x: hidden;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #643173;
+            height: 5vw;
+            min-height: 50px;
+            margin: 0 0 2vw 0;
+            border: 3px solid black;
+            text-align: center;
+            font-family:'Kdam Thmor Pro', sans-serif;
+            letter-spacing: 3px;
+            padding: 0;
+            color: yellow;
+        }
+        .o {
+            color: white;
+            font-family:'Nunito Sans', sans-serif;
+            text-align: center;
+        }
+        .navbar h1 {
+            font-size:max(1rem, 2vw);
+        }
+        .flex-container {
+            display: flex;
+            flex-flow: wrap;
+            margin-bottom: 2rem;
+        }
+        .flex-container div {
+            background-color: #7D5BA6;
+            height: auto;
+            min-height: 200px;
+            border: 3px solid rgb(255, 255, 255);
+            flex: 1 1 0%;
+            width: 300px;
+            padding: 1rem;
+        }
+        .flex-container .two{
+            height: auto;
+            flex: 2 2 0%;
+        }
+        .onhover::after{
+            content: "Cat";
+        }
+        .flex-item {
+            position: relative;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            /* padding: 2rem; */
+            /* max-width: 90vw;*/
+        }
+        .flex-container .one {
+            height: auto;
+        }
+        .flex-item .onhover {
+            visibility: hidden;
+            width: inherit;
+            border-radius: 20px;
+            position:absolute;
+            z-index: 11;
+        }
+        .flex-item:hover .onhover{
+            visibility: visible;
+            position: relative;
+        }
+        .flex-item:hover{
+            background-color: #89CE94;
+        }
+        body {
+            background-color: black;
+        }
+
+        /* kitty containers */
+        .kitty-container {
+            display: flex;
+            flex-flow: wrap row;
+            justify-content: space-around;
+        }
+        .kitty-container div:nth-child(odd){
+            background-color: #89CE94;
+            /* color: red; */
+        }
+        .kitty-container .kitty {
+            background-color: white;
+            border: 5px solid black;
+            /* height: 500px; */
+            flex: 1 1 25%;
+            padding: 1rem;
+            display: flex;
+            flex-flow: nowrap column;
+            gap: 1rem;
+        }
+        .kitty .cat-img{
+            width: 100%;
+        }
+        .kitty .cat-name {
+            font-size: max(2rem,1vw);
+            font-family:'Kdam Thmor Pro', sans-serif ;
+        }
+        .kitty .cat-info {
+            font-size: max(1rem, 0.5vw);
+            font-family:'Nunito Sans', sans-serif ;
+        }
+        .more-info-btn {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: yellow;
+            padding: 5px;
+            font-weight: bold;
+        }
+        /* footer */
+        .footer {
+            display: flex;
+            height: 500px;
+            background-color: #E0E2DB;
+            flex-flow: wrap row;
+            gap: 10vw;
+            padding: 50px;
+            align-items: baseline;
+        }
+        .footer .links{
+            font-family:'Kdam Thmor Pro', sans-serif;
+            font-size: 1rem;
+        }
+        .footer .links ul{
+            list-style-type: none;
+        }
+        .footer .links ul li a{
+            text-decoration: none;
+            color: black;
+        }
+        .footer .links ul li a:hover{
+            text-decoration: underline;
+            text-decoration-color: yellow;
+            color: #643173;
+        }
+        .footer .dev-links{
+            font-family:'Kdam Thmor Pro', sans-serif;
+        }
+        .footer .dev-links ul li a{
+            text-decoration: none;
+            color: #643173;
+        }
+        .footer .dev-links ul li a:hover{
+            text-decoration: underline;
+            text-decoration-color: yellow;
+            color: black;
+        }
+        .footer .contact-form form p {
+            font-family:'Kdam Thmor Pro', sans-serif;
+        }
+        .footer .contact-form {
+            background-color: #89CE94;
+            /* min-width: 300px; */
+            padding: 20px;
+            border-radius: 25px;
+        }
+        .footer .contact-form form {
+            display: flex;
+            flex-flow: nowrap column;
+            gap:1rem;
+        }
+        .footer .contact-form form input[type=text],input[type=email] {
+            border: #643173 2px solid;
+            padding: 5px;
+            font-family:'Nunito Sans', sans-serif;
+        }
+        .footer .contact-form form textarea {
+            resize: none;
+            border: #643173 2px solid;
+            padding: 5px;
+            font-family:'Nunito Sans', sans-serif;
+        }
+        .footer .contact-form form input[type=submit]{
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: yellow;
+            padding: 5px;
+            font-weight: bold;
+        }
+        /* mobile media queries */
+        @media screen and (max-width:500px) {
+            html{
+                overflow-x: hidden;
+            }
+            .flex-container{
+                flex-direction: column;
+                min-width: 300px;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 1;
+                padding: 1rem;
+            }
+            .kitty-container {
+                flex: 1 1 50%;
+            }
+            .kitty {
+                min-width: min(300px, auto);
+            }
+            .footer{
+                height: auto;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .footer .contact-form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Cat's 🐈</h1>
+    </div>
+    
+    <h1 class="o">Strongest Big Cat's 😾</h1>
+    <div class="flex-container">
+        <div class="flex-item one">1
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg" alt="big kitty"
+            class="onhover">
+        </div>
+        <div class="flex-item two">2
+            <img src="https://cdn-acgla.nitrocdn.com/bvIhcJyiWKFqlMsfAAXRLitDZjWdRlLX/assets/static/optimized/rev-5131b73/wp-content/uploads/2020/07/Bengal-tiger-1.jpg" alt="tiger" class="onhover">
+        </div>
+        <div class="flex-item three">3
+            <img src="https://t4.ftcdn.net/jpg/00/94/11/99/360_F_94119968_adNdfLsnPAAwgmGcJDXCnIn0vUAliWs9.jpg" alt=""
+            class="onhover">
+        </div>
+        <div class="flex-item four">4
+            <img src="https://worldbirds.com/wp-content/uploads/2020/05/black-panther1.jpg" alt="" class="onhover">
+        </div>
+    </div>
+
+    <div class="float-text">
+        <marquee behavior="" direction="">House Cats</marquee>
+    </div>
+
+    <div class="kitty-container">
+        <div class="kitty">
+            <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2021%2F09%2F21%2Fsiberian-cat-orange-on-fence-77742432-2000.jpg" alt=""
+            class="cat-img"
+            >
+            <div class="cat-name">Siberian Cat</div>
+            <div class="cat-info">The Siberian is a centuries-old landrace (natural variety) of domestic cat in Russia and recently developed as a formal
+            breed with standards promulgated the world over since the late 1980s.</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+        <div class="kitty">
+            <img src="https://miro.medium.com/max/1400/1*MYG8xruNTQv1CPBbqEPG_A.jpeg" alt="" class="cat-img">
+            <div class="cat-name">Persian cat</div>
+            <div class="cat-info">
+            The Persian cat (Persian: گربه پارسی, romanized: Gorbe'-ye Pârsi) is a long-haired breed of cat characterized by its
+            round face and short muzzle. It is also known as the "Persian Longhair" in English-speaking countries. The first
+            documented ancestors of Persian cats were imported into Italy from Persia around 1620</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+        <div class="kitty">
+            <img src="https://www.thesprucepets.com/thmb/ZW8v-2C7IU2c0e7OHgHee3d_J8o=/2121x1414/filters:fill(auto,1)/GettyImages-1319774380-c3da91f9259a47e0966007f8e10690ba.jpg" alt="" class="cat-img">
+            <div class="cat-name">British Shorthair</div>
+            <div class="cat-info">The British Shorthair is the pedigreed version of the traditional British domestic cat, with a distinctively stocky
+            body, dense coat, and broad face.</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+        <div class="kitty">
+            <img src="https://cdn.wallpapersafari.com/66/3/raZepR.jpg" alt="" class="cat-img">
+            <div class="cat-name">Bengal Cat</div>
+            <div class="cat-info">The Bengal cat is a domesticated cat breed created from hybrids of domestic cats, especially the spotted Egyptian Mau,
+            with the Asian leopard cat.</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+        <div class="kitty">
+            <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2021%2F04%2F08%2Fsphynx-green-robe-1012208470-2000.jpg" alt="" class="cat-img">
+            <div class="cat-name">Sphynx cat</div>
+            <div class="cat-info">The Sphynx cat also known as the Canadian Sphynx, is a breed of cat known for its lack of fur. Hairlessness in cats is a
+            naturally occurring genetic mutation.</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+        <div class="kitty">
+            <img src="https://www.thesprucepets.com/thmb/PAz-zwxnPL7JsWpyv1-3uX9LlpI=/735x0/bombay-cat-full-profile-history-and-care-5202250-hero-85810f454cf84a7786e650136a10f91c.jpg" alt="" class="cat-img">
+            <div class="cat-name">Bombay cat</div>
+            <div class="cat-info">The Bombay cat is a type of short-haired cat developed by breeding sable Burmese and black American Shorthair cats, to
+            produce a cat of mostly Burmese type, but with a sleek, panther-like black coat.</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+        <div class="kitty">
+            <img src="https://t2.ea.ltmcdn.com/en/razas/3/8/1/turkish-angora_183_0_600.jpg" alt="" class="cat-img">
+            <div class="cat-name">Turkish Angora</div>
+            <div class="cat-info">The Turkish Angora is a breed of domestic cat. Turkish Angoras are one of the ancient, natural breeds of cat, having
+            originated in central Anatolia.</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+        <div class="kitty">
+            <img src="http://justfunfacts.com/wp-content/uploads/2020/07/american-bobtail.jpg" alt="" class="cat-img">
+            <div class="cat-name">American Bobtail</div>
+            <div class="cat-info">The American Bobtail is an uncommon breed of domestic cat which was developed in the late 1960s. It is most notable for
+            its stubby "bobbed" tail about one-third to one-half the length of a normal cat's tail.</div>
+            <button class="more-info-btn">Read More</button>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="links">
+            Resources used
+            <ul>
+                <li><a href="https://justfunfacts.com">justfunfacts.com</a></li>
+                <li><a href="https://wikipedia.com">wikipedia.com</a></li>
+                <li><a href="https://thesprucepets.com">thesprucepets.com</a></li>
+                <li><a href="https://www.flaticon.com/free-icons/cat" title="cat icons">Cat icons created by Freepik - Flaticon</a></li>
+            </ul>
+        </div>
+        <div class="dev-links">
+            Contact
+            <ul>
+                <li><a href="https://github.com/Sayyed-Salman" target="_blank">Github</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="contact-form">
+            <form action="post">
+                <p>Say Hi! 👋</p>
+                <input type="text" name="name" id="name">
+                <input type="email" name="email" id="email">
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
